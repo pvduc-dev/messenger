@@ -7,7 +7,7 @@
   },
   "version": "1.0.0",
   "scripts": {
-    "dev": "webpack-dev-server --mode development",
+    "dev": "webpack-dev-server --mode development --watch --open",
     "build": "webpack --mode production"
   },
   "license": "MIT",
@@ -21,6 +21,7 @@
     "html-webpack-plugin": "^4.4.1",
     "postcss": "^7.0.32",
     "postcss-loader": "^4.0.1",
+    "prettier": "^2.1.1",
     "ts-loader": "^8.0.3",
     "typescript": "^4.0.2",
     "webpack": "^4.44.1",
