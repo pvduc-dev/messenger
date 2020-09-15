@@ -1,19 +1,22 @@
-import React from 'react';
-import { openFileDialog } from '@helpers/file';
+import React, { FunctionComponent } from 'react';
+import { openFileDialog, saveFile } from '@/helpers/file';
 
-function App() {
+const App: FunctionComponent = () => {
   async function handleClick() {
     const files: FileList = await openFileDialog({
       accept: 'image/*',
       multiple: true,
     });
+    saveFile(files.item(0), 'test')
   }
 
   return (
     <>
-      <h1 onClick={handleClick}>{process.env.NODE_ENV}</h1>
+      <button type="button" onClick={handleClick}>
+        {process.env.NODE_ENV}
+      </button>
     </>
   );
-}
+};
 
 export default App;

@@ -5,7 +5,7 @@ interface OpenDialogOptions {
 
 /**
  * @param options
- * @since 0.0.1
+ * @since 1.0.0
  * @author Pv Duc
  */
 const openFileDialog: (options: OpenDialogOptions) => Promise<FileList> = (
@@ -31,7 +31,7 @@ export { openFileDialog };
 
 /**
  * @param file
- * @since 0.0.1
+ * @since 1.0.0
  * @author Pv Duc
  */
 const fileToDataURL: (file: File) => Promise<string> = (file) => {
@@ -49,10 +49,10 @@ export { fileToDataURL };
 /**
  * @param file
  * @param fileName
- * @since 0.0.1
+ * @since 1.0.0
  * @author Pv Duc
  */
-const saveFile: (file: File, fileName: string) => void = (file, fileName) => {
+const saveFile: (file: File | null, fileName: string) => void = (file, fileName) => {
   const url = URL.createObjectURL(file);
   const anchor: HTMLAnchorElement = document.createElement('a');
   anchor.href = url;

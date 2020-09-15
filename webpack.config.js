@@ -1,28 +1,60 @@
 const path = require('path');
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].[hash].bundle.js',
-    chunkFilename: '[id].js',
+    chunkFilename: '[name].js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     alias: {
-      '@helpers': path.resolve(__dirname, './src/helpers'),
-    }
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   module: {
     rules: [
+      {
+        test: /\.css$/i,
+        use: [
+          process.env.NODE_ENV === 'production'
+            ? MiniCssExtractPlugin.loader
+            : 'style-loader',
+          'css-loader',
+          'postcss-loader',
+        ],
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'images',
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
       },
     ],
+  },
+  target: "web",
+  stats: {
+    children: false,
+    entrypoints: false,
+    modules: false,
   },
   devServer: {
     noInfo: true,
@@ -31,15 +63,36 @@ module.exports = {
     host: '0.0.0.0',
     port: 4000,
     progress: true,
-    useLocalIp: true,
   },
   plugins: [
     new Dotenv({
-      path: '.env'
+      path: `.env.${process.env.NODE_ENV}`,
     }),
-    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    }),
+    new CleanWebpackPlugin({
+    }),
     new HtmlWebpackPlugin({
       template: 'index.html',
+      favicon: path.resolve(__dirname, 'src/assets/images/favicon.ico'),
     }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          output: {
+            comments: false,
+          },
+        },
+      }),
+    ],
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
 };
