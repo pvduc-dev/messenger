@@ -1,21 +1,11 @@
 import React, { FunctionComponent } from 'react';
-import { openFileDialog, saveFile } from '@/helpers/file';
 
 const App: FunctionComponent = () => {
-  async function handleClick() {
-    const files: FileList = await openFileDialog({
-      accept: 'image/*',
-      multiple: true,
-    });
-    saveFile(files.item(0), 'test')
-  }
-
   return (
-    <>
-      <button type="button" onClick={handleClick}>
-        {process.env.NODE_ENV}
-      </button>
-    </>
+    <img
+      src="https://res.cloudinary.com/pv-duc/image/upload/v1580583512/71251323_1608537582635003_6948501557230960640_n.jpg.jpg"
+      alt=""
+    />
   );
 };
 

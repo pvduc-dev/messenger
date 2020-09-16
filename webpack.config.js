@@ -46,7 +46,16 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "ts-loader",
+            options: {
+              happyPackMode: process.env.NODE_ENV === 'production',
+              transpileOnly: process.env.NODE_ENV === 'production'
+            }
+          }
+        ]
       },
     ],
   },
@@ -66,14 +75,13 @@ module.exports = {
   },
   plugins: [
     new Dotenv({
-      path: `.env.${process.env.NODE_ENV}`,
+      path: '.env',
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
       chunkFilename: '[id].[hash].css',
     }),
-    new CleanWebpackPlugin({
-    }),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.html',
       favicon: path.resolve(__dirname, 'src/assets/images/favicon.ico'),
@@ -92,7 +100,13 @@ module.exports = {
       }),
     ],
     splitChunks: {
-      chunks: 'all'
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'js/vendor',
+          chunks: 'all',
+        }
+      }
     }
   },
 };
