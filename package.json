@@ -12,6 +12,18 @@
     "format": "prettier --write \"src/**/*.(ts|tsx|json)\"",
     "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}"
   },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^16.9.49",
