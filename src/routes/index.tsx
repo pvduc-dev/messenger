@@ -1,4 +1,4 @@
-import React, {Suspense} from "react";
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 export default (
@@ -9,4 +9,4 @@ export default (
       </div>
     </Router>
   </Suspense>
-)
+);

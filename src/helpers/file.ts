@@ -52,7 +52,10 @@ export { fileToDataURL };
  * @since 1.0.0
  * @author Pv Duc
  */
-const saveFile: (file: File | null, fileName: string) => void = (file, fileName) => {
+const saveFile: (file: File | null, fileName: string) => void = (
+  file,
+  fileName,
+) => {
   const url = URL.createObjectURL(file);
   const anchor: HTMLAnchorElement = document.createElement('a');
   anchor.href = url;
