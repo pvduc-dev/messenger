@@ -23,6 +23,8 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "func-names": "off"
+    "func-names": "off",
+    "global-require": "off",
+    "require-await": "error"
   }
 }

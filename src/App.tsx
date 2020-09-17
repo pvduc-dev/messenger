@@ -1,11 +1,17 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, Suspense } from 'react';
+import { openFileDialog } from '@/helpers/file';
 
 const App: FunctionComponent = () => {
+  async function handleAttachmentClick (): Promise<void> {
+    const files: FileList = await openFileDialog({
+      accept: 'image/*',
+      multiple: true,
+    })
+  }
   return (
-    <img
-      src="https://res.cloudinary.com/pv-duc/image/upload/v1580583512/71251323_1608537582635003_6948501557230960640_n.jpg.jpg"
-      alt=""
-    />
+    <>
+      <div className="">test</div>
+    </>
   );
 };
 

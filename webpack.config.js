@@ -1,11 +1,10 @@
 const path = require('path');
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -49,17 +48,17 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "ts-loader",
+            loader: 'ts-loader',
             options: {
               happyPackMode: process.env.NODE_ENV === 'production',
-              transpileOnly: process.env.NODE_ENV === 'production'
-            }
-          }
-        ]
+              transpileOnly: process.env.NODE_ENV === 'production',
+            },
+          },
+        ],
       },
     ],
   },
-  target: "web",
+  target: 'web',
   stats: {
     children: false,
     entrypoints: false,
@@ -80,31 +79,24 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
       chunkFilename: '[id].[hash].css',
+      disable: process.env.NODE_ENV !== 'production',
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({}),
     new HtmlWebpackPlugin({
       template: 'index.html',
-      favicon: path.resolve(__dirname, 'src/assets/images/favicon.ico'),
+      favicon: path.resolve(__dirname, 'src/assets/favicon.ico'),
     }),
   ],
   optimization: {
-    minimize: true,
-    minimizer: [
-      new CssMinimizerPlugin(),
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          output: {
-            comments: false,
-          },
-        },
-      }),
-    ],
+    minimize: false,
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
     splitChunks: {
       cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-          name: 'js/vendor',
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
           chunks: 'all',
+          filename: "js/[name].[hash].chunk.js"
         }
       }
     }
