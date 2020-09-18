@@ -25,6 +25,7 @@
   "rules": {
     "func-names": "off",
     "global-require": "off",
-    "require-await": "error"
+    "require-await": "error",
+    "import/prefer-default-export": "off"
   }
 }

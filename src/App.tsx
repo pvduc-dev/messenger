@@ -1,12 +1,21 @@
 import React, { FunctionComponent, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Loading from '@/components/Loading';
 
 const App: FunctionComponent = () => {
   return (
-    <Suspense fallback={<h1>Loading...</h1>}>
-      <div className="fixed top-0 left-0 w-full border border-blue-500"/>
+    <Suspense fallback={<Loading />}>
       <Router>
         <Switch>
+          <Route
+            path="/"
+            exact
+            component={lazy(() => import('@/components/Home'))}
+          />
+          <Route
+            path="/login"
+            component={lazy(() => import('@/components/Login'))}
+          />
         </Switch>
       </Router>
     </Suspense>

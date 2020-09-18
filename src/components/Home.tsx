@@ -9,15 +9,19 @@ import {
   ThumbsUp,
 } from 'react-feather';
 import { openFileDialog } from '@/helpers/file';
-import { saveFile } from '@/helpers/file';
+import { useState } from 'react';
+import { fileToDataURL } from '@/helpers/file';
 
 const Home: FunctionComponent = () => {
+  const [imageUrl, setImageUrl] = useState<string>('');
+
   async function handleFileClick(): Promise<void> {
     const files: FileList = await openFileDialog({
       multiple: true,
       accept: 'image/*',
     });
-    saveFile(files.item(0) as File, '1234567');
+    const imageUrl = await fileToDataURL(files.item(0) as File);
+    setImageUrl(imageUrl)
   }
 
   return (
@@ -44,7 +48,9 @@ const Home: FunctionComponent = () => {
         <div className="h-full flex">
           <div className="xxl:w-1/5 md:w-64 border-r" />
           <div className="flex-1 flex flex-col">
-            <div className="flex-1 overflow-y-auto" />
+            <div className="flex-1 overflow-y-auto">
+              <img src={imageUrl} alt="image"/>
+            </div>
             <div className="h-16 flex items-center border-t px-4">
               <Mic
                 width={24}

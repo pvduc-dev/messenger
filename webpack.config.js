@@ -61,7 +61,6 @@ module.exports = {
   target: 'web',
   stats: {
     children: false,
-    entrypoints: false,
     modules: false,
   },
   devServer: {
@@ -71,6 +70,11 @@ module.exports = {
     host: '0.0.0.0',
     port: 4000,
     progress: true,
+    historyApiFallback: true,
+    proxy: {
+      context: () => true,
+      '/api': 'http://localhost:3030'
+    }
   },
   plugins: [
     new Dotenv({
@@ -91,14 +95,7 @@ module.exports = {
     minimize: process.env.NODE_ENV === 'production',
     minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
     splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-          filename: "js/[name].[hash].chunk.js"
-        }
-      }
+      chunks: 'all',
     }
   },
 };

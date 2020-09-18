@@ -8,7 +8,7 @@ interface OpenDialogOptions {
  * @since 1.0.0
  * @author Pv Duc
  */
-const openFileDialog: (options: OpenDialogOptions) => Promise<FileList> = (
+export const openFileDialog: (options: OpenDialogOptions) => Promise<FileList> = (
   options,
 ) => {
   return new Promise((resolve) => {
@@ -27,24 +27,20 @@ const openFileDialog: (options: OpenDialogOptions) => Promise<FileList> = (
   });
 };
 
-export { openFileDialog };
-
 /**
  * @param file
  * @since 1.0.0
  * @author Pv Duc
  */
-const fileToDataURL: (file: File) => Promise<string> = (file) => {
+export const fileToDataURL: (file: File) => Promise<string> = (file) => {
   return new Promise<string>((resolve) => {
     const fileReader: FileReader = new FileReader();
     fileReader.addEventListener('load', function () {
       resolve(this.result as string);
     });
-    fileReader.readAsDataURL(file);
+    fileReader.readAsDataURL(file as File);
   });
 };
-
-export { fileToDataURL };
 
 /**
  * @param file
@@ -52,7 +48,7 @@ export { fileToDataURL };
  * @since 1.0.0
  * @author Pv Duc
  */
-const saveFile: (file: File | null, fileName: string) => void = (
+export const saveFile: (file: File | null, fileName: string) => void = (
   file,
   fileName,
 ) => {
@@ -62,5 +58,3 @@ const saveFile: (file: File | null, fileName: string) => void = (
   anchor.setAttribute('download', fileName);
   anchor.click();
 };
-
-export { saveFile };
