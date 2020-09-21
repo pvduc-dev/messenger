@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useState, ChangeEvent } from 'react';
 import axios from 'axios';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-const SignIn: FunctionComponent = () => {
+const Login: FunctionComponent = () => {
   const history = useHistory();
 
   const [email, setEmail] = useState<string>('');
@@ -15,11 +15,10 @@ const SignIn: FunctionComponent = () => {
         email,
         password,
       });
-      history.push('/')
+      history.push('/');
     } catch (e: unknown) {
-      console.log(e);
     } finally {
-      setPassword('')
+      setPassword('');
     }
   }
 
@@ -109,4 +108,4 @@ const SignIn: FunctionComponent = () => {
   );
 };
 
-export default SignIn;
+export default Login;

@@ -1,16 +1,14 @@
-import React from 'react';
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
+
 import {
-  Settings,
-  Mic,
   Image,
+  Mic,
   Paperclip,
+  Settings,
   Smile,
   ThumbsUp,
 } from 'react-feather';
-import { openFileDialog } from '@/helpers/file';
-import { useState } from 'react';
-import { fileToDataURL } from '@/helpers/file';
+import { fileToDataURL, openFileDialog } from '@/helpers/file';
 
 const Home: FunctionComponent = () => {
   const [imageUrl, setImageUrl] = useState<string>('');
@@ -20,8 +18,7 @@ const Home: FunctionComponent = () => {
       multiple: true,
       accept: 'image/*',
     });
-    const imageUrl = await fileToDataURL(files.item(0) as File);
-    setImageUrl(imageUrl)
+    setImageUrl(await fileToDataURL(files.item(0) as File));
   }
 
   return (
@@ -49,7 +46,7 @@ const Home: FunctionComponent = () => {
           <div className="xxl:w-1/5 md:w-64 border-r" />
           <div className="flex-1 flex flex-col">
             <div className="flex-1 overflow-y-auto">
-              <img src={imageUrl} alt="image"/>
+              <img src={imageUrl} alt="image" />
             </div>
             <div className="h-16 flex items-center border-t px-4">
               <Mic
@@ -95,7 +92,7 @@ const Home: FunctionComponent = () => {
               />
             </div>
           </div>
-          <div className="xl:w-1/5 md:w-64 border-l"/>
+          <div className="xl:w-1/5 md:w-64 border-l" />
         </div>
       </div>
     </>

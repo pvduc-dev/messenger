@@ -26,6 +26,9 @@
     "func-names": "off",
     "global-require": "off",
     "require-await": "error",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "jsx-props-no-spreading": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off"
   }
 }

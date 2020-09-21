@@ -8,9 +8,9 @@ interface OpenDialogOptions {
  * @since 1.0.0
  * @author Pv Duc
  */
-export const openFileDialog: (options: OpenDialogOptions) => Promise<FileList> = (
-  options,
-) => {
+export const openFileDialog: (
+  options: OpenDialogOptions,
+) => Promise<FileList> = (options) => {
   return new Promise((resolve) => {
     const input: HTMLInputElement = document.createElement('input');
     input.setAttribute('type', 'file');

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 function Loading() {
-  const [amount, setAmount] = useState(100)
+  const [amount, setAmount] = useState(100);
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setAmount((prevState => prevState - 10))
-    },100)
+      setAmount((prevState) => prevState - 10);
+    }, 100);
     return () => clearInterval(intervalId);
   }, []);
   return (
