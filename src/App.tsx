@@ -15,7 +15,7 @@ const App: FunctionComponent = () => {
           />
           <Route
             path="/sign-in"
-            component={lazy(() => import('@/components/Login'))}
+            component={lazy(() => import('@/components/SignIn'))}
           />
         </Switch>
       </Router>
