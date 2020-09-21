@@ -1,9 +1,8 @@
 import React, { FunctionComponent, useState, ChangeEvent } from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
-import Loading from '@/components/Loading';
 
-const Login: FunctionComponent = () => {
+const SignIn: FunctionComponent = () => {
   const history = useHistory();
 
   const [email, setEmail] = useState<string>('');
@@ -110,4 +109,4 @@ const Login: FunctionComponent = () => {
   );
 };
 
-export default Login;
+export default SignIn;
