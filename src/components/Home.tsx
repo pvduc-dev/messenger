@@ -46,7 +46,7 @@ const Home: FunctionComponent = () => {
           <div className="xxl:w-1/5 md:w-64 border-r" />
           <div className="flex-1 flex flex-col">
             <div className="flex-1 overflow-y-auto">
-              <img src={imageUrl} alt="image" />
+              <img src={imageUrl} alt="test" />
             </div>
             <div className="h-16 flex items-center border-t px-4">
               <Mic
