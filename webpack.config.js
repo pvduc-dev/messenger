@@ -70,11 +70,10 @@ module.exports = {
     hot: true,
     host: '0.0.0.0',
     port: 4000,
-    https: true,
     progress: true,
     historyApiFallback: true,
     proxy: {
-      '/api': 'https://pvduc2.herokuapp.com'
+      '/api': 'http://localhost:3030'
     }
   },
   plugins: [
