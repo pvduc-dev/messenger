@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -69,11 +70,11 @@ module.exports = {
     hot: true,
     host: '0.0.0.0',
     port: 4000,
+    https: true,
     progress: true,
     historyApiFallback: true,
     proxy: {
-      context: () => true,
-      '/api': 'http://localhost:3030'
+      '/api': 'https://pvduc2.herokuapp.com'
     }
   },
   plugins: [
@@ -86,6 +87,7 @@ module.exports = {
       disable: process.env.NODE_ENV !== 'production',
     }),
     new CleanWebpackPlugin({}),
+    new webpack.AutomaticPrefetchPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.html',
       favicon: path.resolve(__dirname, 'src/assets/favicon.ico'),
