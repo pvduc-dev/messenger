@@ -40,6 +40,7 @@ module.exports = {
             options: {
               outputPath: 'images',
               name: '[name].[ext]',
+              esModule: false,
             },
           },
         ],
@@ -72,9 +73,13 @@ module.exports = {
     port: 4000,
     progress: true,
     historyApiFallback: true,
+    watchContentBase: true,
     proxy: {
-      '/api': 'http://localhost:3030'
-    }
+      '/api/*': {
+        target: 'http://localhost:3030',
+        secure: false
+      }
+    },
   },
   plugins: [
     new Dotenv({
@@ -86,7 +91,6 @@ module.exports = {
       disable: process.env.NODE_ENV !== 'production',
     }),
     new CleanWebpackPlugin({}),
-    new webpack.AutomaticPrefetchPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.html',
       favicon: path.resolve(__dirname, 'src/assets/favicon.ico'),

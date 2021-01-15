@@ -1,98 +1,54 @@
-import React, { FunctionComponent, useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import {
-  Image,
-  Mic,
-  Paperclip,
-  Settings,
-  Smile,
-  ThumbsUp,
-} from 'react-feather';
-import { fileToDataURL, openFileDialog } from '@/helpers/file';
-
-const Home: FunctionComponent = () => {
-  const [imageUrl, setImageUrl] = useState<string>('');
-
-  async function handleFileClick(): Promise<void> {
-    const files: FileList = await openFileDialog({
-      multiple: true,
-      accept: 'image/*',
-    });
-    setImageUrl(await fileToDataURL(files.item(0) as File));
-  }
-
+const Home = () => {
   return (
     <>
-      <div className="fixed h-20 w-full flex flex-none bg-white items-center border-b px-10">
-        <img
-          src="https://res.cloudinary.com/pv-duc/image/upload/v1600362173/logo.svg"
-          alt="logo"
-          title="Messenger"
-          className="w-10 h-10"
-        />
-        <Settings
-          stroke="#667EEA"
-          strokeWidth={2}
-          className="ml-auto cursor-pointer"
-        />
-        <img
-          src="https://res.cloudinary.com/pv-duc/image/upload/v1580583512/71251323_1608537582635003_6948501557230960640_n.jpg.jpg"
-          alt="avatar"
-          className="w-10 h-10 ml-6"
-        />
-      </div>
-      <div className="flex h-screen pt-20 flex-col">
-        <div className="h-full flex">
-          <div className="xxl:w-1/5 md:w-64 border-r" />
-          <div className="flex-1 flex flex-col">
-            <div className="flex-1 overflow-y-auto">
-              <img src={imageUrl} alt="test" />
+      <div className="bg-white">
+        <div className="container">
+          <div className="flex justify-center">
+            <div className="w-12 h-12 flex self-center">
+              <img
+                src="https://res.cloudinary.com/pv-duc/image/upload/v1580583512/71251323_1608537582635003_6948501557230960640_n.jpg.jpg"
+                alt="logo"
+              />
             </div>
-            <div className="h-16 flex items-center border-t px-4">
-              <Mic
-                width={24}
-                height={24}
-                stroke="#667EEA"
-                strokeWidth={2}
-                className="mx-2 cursor-pointer flex-none"
-              />
-              <Image
-                width={24}
-                height={24}
-                stroke="#667EEA"
-                strokeWidth={2}
-                className="mx-2 cursor-pointer flex-none"
-              />
-              <Paperclip
-                width={28}
-                height={24}
-                stroke="#667EEA"
-                strokeWidth={2}
-                className="mx-2 cursor-pointer flex-none"
-                onClick={handleFileClick}
-              />
-              <input
-                type="text"
-                placeholder="Type something here..."
-                className="bg-gray-100 rounded-lg w-full py-3 px-6 text-gray-700 leading-tight focus:outline-none mx-4"
-              />
-              <Smile
-                width={24}
-                height={24}
-                stroke="#667EEA"
-                strokeWidth={2}
-                className="mx-2 cursor-pointer flex-none"
-              />
-              <ThumbsUp
-                width={24}
-                height={24}
-                stroke="#667EEA"
-                strokeWidth={2}
-                className="mx-2 cursor-pointer flex-none"
-              />
+            <div className="ml-auto flex py-8">
+              <Link to="/" className="mx-5 flex self-center">
+                <span className="font-medium text-primary">Home</span>
+              </Link>
+              <Link to="/" className="mx-5 flex self-center">
+                <span className="font-medium text-primary">Product</span>
+              </Link>
+              <Link to="/" className="mx-5 flex self-center">
+                <span className="font-medium text-primary">About</span>
+              </Link>
+              <Link to="/" className="mx-5 flex self-center">
+                <span className="font-medium text-primary">Contact</span>
+              </Link>
+              <Link
+                to="/"
+                className="block mx-5 px-8 py-2 border rounded-full hover:text-white border-primary hover:bg-primary text-primary"
+              >
+                <span className="font-bold">Sign in</span>
+              </Link>
+              <Link
+                to="/"
+                className="block mx-5 px-8 py-2 rounded-full border bg-secondary"
+              >
+                <span className="font-bold text-primary">Sign up</span>
+              </Link>
             </div>
           </div>
-          <div className="xl:w-1/5 md:w-64 border-l" />
+        </div>
+      </div>
+      <div className="mt-12">
+        <div className="container">
+          <div className="rounded-xxl bg-secondary">
+            <div className="">
+              <div className="" />
+            </div>
+          </div>
         </div>
       </div>
     </>

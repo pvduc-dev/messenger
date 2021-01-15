@@ -18,7 +18,7 @@ export const openFileDialog: (
     input.setAttribute('accept', options.accept as string);
     input.addEventListener(
       'change',
-      function () {
+      function() {
         resolve(this.files as FileList);
       },
       false,
@@ -35,7 +35,7 @@ export const openFileDialog: (
 export const fileToDataURL: (file: File) => Promise<string> = (file) => {
   return new Promise<string>((resolve) => {
     const fileReader: FileReader = new FileReader();
-    fileReader.addEventListener('load', function () {
+    fileReader.addEventListener('load', function() {
       resolve(this.result as string);
     });
     fileReader.readAsDataURL(file as File);

@@ -1,5 +1,5 @@
 import { parserCookie } from '@/helpers/cookie';
-import { http } from '@/plugins/axios';
+import {  } from 'rxjs/ajax';
 
 export const isAuthenticated: () => boolean = () => {
   const cookie = parserCookie(document.cookie);
@@ -10,12 +10,3 @@ interface LoginPayload {
   email: string;
   password: string;
 }
-
-export const login: (loginPayload: LoginPayload) => Promise<object> = (
-  loginPayload,
-) => {
-  return http.post('/api/auth/login', {
-    email: loginPayload.email,
-    password: loginPayload.password,
-  });
-};

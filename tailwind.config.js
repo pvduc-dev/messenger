@@ -22,6 +22,8 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
 
+      primary: '#4064BA',
+      secondary: '#F1F5FF',
       black: '#000',
       white: '#fff',
 
@@ -198,6 +200,8 @@ module.exports = {
       default: '0.25rem',
       md: '0.375rem',
       lg: '0.5rem',
+      xl: '1rem',
+      xxl: '2rem',
       full: '9999px',
     },
     borderWidth: {
@@ -219,7 +223,9 @@ module.exports = {
       outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
       none: 'none',
     },
-    container: {},
+    container: {
+      center: true,
+    },
     cursor: {
       auto: 'auto',
       default: 'default',
@@ -251,7 +257,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        'Source Sans Pro'
+        'Quicksand'
       ],
       serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],

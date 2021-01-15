@@ -43,9 +43,20 @@ export default () => (
   <Suspense fallback={<h1>Loading</h1>}>
     <Router>
       <Switch>
-        <PrivateRoute path="/" exact component={lazy(() => import('@/components/Home'))} />
-        <PublicRoute path="/sign-in" component={lazy(() => import('@/components/SignIn'))}/>
+        <PrivateRoute
+          path="/"
+          exact
+          component={lazy(() => import('@/components/Home'))}
+        />
+        <PublicRoute
+          path="/sign-in"
+          component={lazy(() => import('@/components/SignIn'))}
+        />
+        <Route
+          path="/landing-page"
+          component={lazy(() => import('@/components/LandingPage'))}
+        />
       </Switch>
     </Router>
   </Suspense>
-)
+);
