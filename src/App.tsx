@@ -1,13 +1,22 @@
-import React, { FunctionComponent } from 'react';
-import socketIoClient from 'socket.io-client';
+import React, { FunctionComponent, useEffect } from 'react';
+import { SocketProvider, socket } from '@/plugins/socket-io';
+import Login from '@/pages/Login';
+
 
 const App: FunctionComponent = () => {
-  socketIoClient.connect({
-    host: 'http://localhost:3030',
-    transports: ['websocket']
-  })
+  useEffect((): void => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.querySelector('html')?.classList.add('dark');
+    } else {
+      document.querySelector('html')?.classList.remove('dark');
+    }
+  });
   return (
-    <>1</>
+    <SocketProvider
+      value={socket}
+    >
+      <Login />
+    </SocketProvider>
   );
 };
 

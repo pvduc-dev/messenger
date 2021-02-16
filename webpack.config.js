@@ -1,11 +1,11 @@
 const path = require('path');
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -88,13 +88,15 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
       chunkFilename: '[id].[hash].css',
-      disable: process.env.NODE_ENV !== 'production',
     }),
     new CleanWebpackPlugin({}),
     new HtmlWebpackPlugin({
       template: 'index.html',
       favicon: path.resolve(__dirname, 'src/assets/favicon.ico'),
     }),
+    new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+    })
   ],
   optimization: {
     minimize: process.env.NODE_ENV === 'production',

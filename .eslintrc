@@ -29,6 +29,12 @@
     "import/prefer-default-export": "off",
     "jsx-props-no-spreading": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/button-has-type": "off",
+    "react/jsx-first-prop-new-line": [1, "always"],
+    "react/jsx-max-props-per-line": [1, {"maximum": 1, "when": "always"}],
+    "react/jsx-one-expression-per-line": [1, { "allow": "single-child" }],
+    "react/jsx-indent-props": [2, 2]
   }
 }

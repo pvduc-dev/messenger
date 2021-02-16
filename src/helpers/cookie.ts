@@ -1,3 +1,6 @@
+/**
+ * @param cookie
+ */
 export const parserCookie: (cookie: string) => Record<string, string> = (
   cookie,
 ) => {

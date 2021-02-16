@@ -1,0 +1,12 @@
+@layer components {
+  button {
+    @apply inline-block;
+    @apply bg-indigo-600;
+    @apply rounded;
+    @apply px-6;
+    @apply py-2;
+    @apply text-white;
+    @apply focus:outline-none;
+    @apply text-sm;
+  }
+}
